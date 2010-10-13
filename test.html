@@ -10,7 +10,7 @@
  <script>
     var gm = google.maps,
         map = new gm.Map(document.getElementById("map"),{
-            center: new google.maps.LatLng(42.0,-83.0),
+            center: new gm.LatLng(42.0,-83.0),
 		    zoom: 6,
 		    mapTypeId: google.maps.MapTypeId.ROADMAP,
 		    mapTypeControl: false,
@@ -36,6 +36,12 @@
                     hue: "#cccccc",
                     lightness: -100
                 });
-    
+        // you can updates like this from the command-line    
+        setTimeout(function(){
+            plain
+                .rule("water").lightness(50)
+                .rule("administrative.province").visibility("on")
+                .update();
+        },1000);
  </script>
 </body>
