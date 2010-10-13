@@ -1,3 +1,12 @@
+###
+public namespace, the only thing you see
+###
+
+window.gstil = {
+  makeStyle: (title) ->
+    new Stil title
+}
+
 log = (string) ->
   console.log(string)
 
@@ -157,52 +166,3 @@ makeRule = (featureType) ->
   featureType: featureType,
   elementType: "all", # default
   stylers: []
-
-###
-public namespace, the only thing you see
-###
-
-window.gstil = {
-  makeStyle: (title) ->
-    new Stil title
-}
-  
-  
-###
-greenery =
-  gstil
-    .makeStyle("greenery") // title is mandatory
-    .addTo(myMap) // will be added after rules are read [can push multiples here]
-    .select("administrative.country")
-      .just("geometry")
-      .visibility("on")
-      .saturation(50)
-      .hue("#334455")
-    .select("water") // select when feature is selected will push back to style
-      .just("labels")
-      .visibility("off")
-    .select("landscape")
-      .hue("#333")
-
-greenery =
-  gstil
-    .newStyle("greenery")
-    .addTo(myMap)
-    .administrative.country
-      .just("geometry")
-      .rules({
-        
-      })
-    .select("administrative.country")
-    .rules({
-      administrative.country: {
-        visibility: "on",
-        saturation: 50,
-        hue: #334455
-      }
-    })
-
-greenery
-  .select("administrative.country")
-    .visibility("off")
-###
