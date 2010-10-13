@@ -8,35 +8,34 @@
  <div id="map" style="height:500px;width:500px">
  </div>
  <script>
-    var gm = google.maps;
-    var map = new gm.Map(document.getElementById("map"),{
-        center: new google.maps.LatLng(42.0,-83.0),
-		zoom: 6,
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		mapTypeControl: false,
-		navigationControl: false
-    });
-    
-    var plain = gstil
-        .makeStyle("plain")
-            .addTo(map)
-            .turnOff(
-                "administrative.locality", "road",
-                "poi.park", "administrative.province"
-            )
-            .rule("administrative.country",{
-                visibility: "simplified",
-                lightness: 25
-            })
-            .rule("landscape",{
-                hue: "#00ff09",
-                lightness: -15
-            })
-            .rule("water",{
-                visibility: "simplified",
-                hue: "#cccccc",
-                lightness: -100
-            });
+    var gm = google.maps,
+        map = new gm.Map(document.getElementById("map"),{
+            center: new google.maps.LatLng(42.0,-83.0),
+		    zoom: 6,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP,
+		    mapTypeControl: false,
+		    navigationControl: false
+        }),
+        plain = gstil
+            .makeStyle("plain")
+                .addTo(map)
+                .turnOff(
+                    "administrative.locality", "road",
+                    "poi.park", "administrative.province"
+                )
+                .rule("administrative.country",{
+                    visibility: "simplified",
+                    lightness: 25
+                })
+                .rule("landscape",{
+                    hue: "#00ff09",
+                    lightness: -15
+                })
+                .rule("water",{
+                    visibility: "simplified",
+                    hue: "#cccccc",
+                    lightness: -100
+                });
     
  </script>
 </body>
