@@ -2,7 +2,7 @@
 public namespace, the only thing you see
 ###
 
-window.gstil = {
+window.GStil = {
   makeStyle: (title) ->
     new Stil title
 }
@@ -95,15 +95,23 @@ class Stil
     @map = map
     # google maps code on setting
     that = @
-    _.defer ->
-      style = new google.maps.StyledMapType that.rules,
+    _.defer =>
+      style = new google.maps.StyledMapType @rules,
         map: map,
-        name: that.name
+        name: @name
       # add to the map registry
-      map.mapTypes.set that.name, style
-      map.setMapTypeId that.name
-      that.style = style
+      map.mapTypes.set @name, style
+      map.setMapTypeId @name
+      @style = style
     return @ # chain
+  
+  # create the style without explicitly adding it to the map
+  # should be called after your rules are set up
+  registerWith: (map) ->
+    @.style = new google.maps.StyleMapType that.rules,
+      map: @map,
+      name: @name
+    return @
   
   update: ->
     @addTo @map # re-trigger the bind
@@ -132,6 +140,10 @@ class Stil
       log "That's not a real feature type."
     return @ # chain on!
   
+  ruleIf: (cond, featureType, stylers) ->
+    if cond
+      this.rule featureType, stylers
+    return @ # never break the chain!
   # refine the last featureType by elementType
   just: (elementType) ->
     # first make sure it's legit

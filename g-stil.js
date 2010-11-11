@@ -1,10 +1,12 @@
 (function() {
   var Stil, _i, _result, features, log, makeRule, rules;
-  var __slice = Array.prototype.slice;
+  var __bind = function(func, context) {
+    return function(){ return func.apply(context, arguments); };
+  }, __slice = Array.prototype.slice;
   /*
   public namespace, the only thing you see
   */
-  window.gstil = {
+  window.GStil = {
     makeStyle: function(title) {
       return new Stil(title);
     }
@@ -69,15 +71,22 @@
     var that;
     this.map = map;
     that = this;
-    _.defer(function() {
+    _.defer(__bind(function() {
       var style;
-      style = new google.maps.StyledMapType(that.rules, {
+      style = new google.maps.StyledMapType(this.rules, {
         map: map,
-        name: that.name
+        name: this.name
       });
-      map.mapTypes.set(that.name, style);
-      map.setMapTypeId(that.name);
-      return (that.style = style);
+      map.mapTypes.set(this.name, style);
+      map.setMapTypeId(this.name);
+      return (this.style = style);
+    }, this));
+    return this;
+  };
+  Stil.prototype.registerWith = function(map) {
+    this.style = new google.maps.StyleMapType(that.rules, {
+      map: this.map,
+      name: this.name
     });
     return this;
   };
@@ -108,6 +117,12 @@
       }
     } else {
       log("That's not a real feature type.");
+    }
+    return this;
+  };
+  Stil.prototype.ruleIf = function(cond, featureType, stylers) {
+    if (cond) {
+      this.rule(featureType, stylers);
     }
     return this;
   };
