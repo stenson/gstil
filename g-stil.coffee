@@ -89,6 +89,13 @@ class Stil
   pushRule: (rule) ->
     @rules.push rule
     @last = rule
+  
+  # private method for building the styled map type
+  _buildStyledMapType: (map) ->
+    @map = map # cache this reference
+    new google.maps.StyledMapType @rules,
+      map: map,
+      name: @name
     
   # add the style to this map when the rules are done
   addTo: (map) ->
@@ -96,9 +103,7 @@ class Stil
     # google maps code on setting
     that = @
     _.defer =>
-      style = new google.maps.StyledMapType @rules,
-        map: map,
-        name: @name
+      style = @._buildStyledMapType map
       # add to the map registry
       map.mapTypes.set @name, style
       map.setMapTypeId @name
@@ -108,9 +113,7 @@ class Stil
   # create the style without explicitly adding it to the map
   # should be called after your rules are set up
   registerWith: (map) ->
-    @.style = new google.maps.StyleMapType that.rules,
-      map: @map,
-      name: @name
+    @.style = @._buildStyledMapType map
     return @
   
   update: ->

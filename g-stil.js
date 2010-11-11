@@ -67,16 +67,20 @@
     this.rules.push(rule);
     return (this.last = rule);
   };
+  Stil.prototype._buildStyledMapType = function(map) {
+    this.map = map;
+    return new google.maps.StyledMapType(this.rules, {
+      map: map,
+      name: this.name
+    });
+  };
   Stil.prototype.addTo = function(map) {
     var that;
     this.map = map;
     that = this;
     _.defer(__bind(function() {
       var style;
-      style = new google.maps.StyledMapType(this.rules, {
-        map: map,
-        name: this.name
-      });
+      style = this._buildStyledMapType(map);
       map.mapTypes.set(this.name, style);
       map.setMapTypeId(this.name);
       return (this.style = style);
@@ -84,10 +88,7 @@
     return this;
   };
   Stil.prototype.registerWith = function(map) {
-    this.style = new google.maps.StyleMapType(that.rules, {
-      map: this.map,
-      name: this.name
-    });
+    this.style = this._buildStyledMapType(map);
     return this;
   };
   Stil.prototype.update = function() {
