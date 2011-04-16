@@ -74,7 +74,7 @@ class Stil
       map.mapTypes.set @name, style
       map.setMapTypeId @name
       @style = style
-    ),10
+    ),0
     return @ # chain
   
   # create the style without explicitly adding it to the map

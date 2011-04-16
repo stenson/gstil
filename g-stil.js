@@ -79,7 +79,7 @@
         map.mapTypes.set(this.name, style);
         map.setMapTypeId(this.name);
         return this.style = style;
-      }, this)), 10);
+      }, this)), 0);
       return this;
     };
     Stil.prototype.registerWith = function(map) {
