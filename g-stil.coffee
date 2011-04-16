@@ -3,7 +3,7 @@
 window.GStil =
   makeStyle: (title) -> new Stil title
 
-# rule declarations (will be converted to methods)
+# rule declarations (does type checking and serves as documentation)
 rules = (->
   _rules =
     featureTypes:
