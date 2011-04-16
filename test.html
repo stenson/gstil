@@ -1,6 +1,6 @@
 <html>
 <head>
- <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.1&sensor=false"></script>
+ <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.0&sensor=false"></script>
  <script src="underscore.js"></script>
  <script src="g-stil.js"></script>
 </head>
@@ -8,40 +8,38 @@
  <div id="map" style="height:500px;width:500px">
  </div>
  <script>
+    
     var gm = google.maps,
-        map = new gm.Map(document.getElementById("map"),{
-            center: new gm.LatLng(42.0,-83.0),
-		    zoom: 6,
-		    mapTypeId: google.maps.MapTypeId.ROADMAP,
-		    mapTypeControl: false,
-		    navigationControl: false
-        }),
-        plain = gstil
-            .makeStyle("plain")
-                .addTo(map)
-                .turnOff(
-                    "administrative.locality", "road",
-                    "poi.park", "administrative.province"
-                )
-                .rule("administrative.country",{
-                    visibility: "simplified",
-                    lightness: 25
-                })
-                .rule("landscape",{
-                    hue: "#00ff09",
-                    lightness: -15
-                })
-                .rule("water",{
-                    visibility: "simplified",
-                    hue: "#cccccc",
-                    lightness: -100
-                });
-        // you can updates like this from the command-line    
-        setTimeout(function(){
-            plain
-                .rule("water").lightness(50)
-                .rule("administrative.province").visibility("on")
-                .update();
-        },1000);
+      map = new gm.Map(document.getElementById("map"),{
+        center: new gm.LatLng(42.0,-83.0),
+        zoom: 6,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        navigationControl: false
+    });
+    
+    // now make and customize the style
+    var plain = GStil.makeStyle("plain")
+      .addTo(map)
+      .turnOff(
+        "administrative.locality", "road", "poi.park", "administrative.province"
+      )
+      .rule("administrative.country",{
+        visibility: "simplified", lightness: 25
+      })
+      .rule("landscape",{
+        hue: "#00ff09", lightness: -15
+      })
+      .rule("water",{
+        visibility: "simplified", hue: "#a00", lightness: 50
+      });
+      
+    //you can updates like this from the command-line    
+    // setTimeout(function(){
+    //   plain
+    //     .rule("water").lightness(50)
+    //     .rule("administrative.province").visibility("on")
+    //     .update();
+    // },1000);
  </script>
 </body>
