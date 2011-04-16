@@ -1,7 +1,5 @@
 (function() {
-  /*
-  public namespace, the only thing you see
-  */  var Stil, addStyle, makeRule, name, rules, type, _ref;
+  var Stil, addStyle, makeRule, name, rules, type, _ref;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __slice = Array.prototype.slice;
   window.GStil = {
     makeStyle: function(title) {
@@ -9,7 +7,7 @@
     }
   };
   rules = (function() {
-    var features, sub, subs, supr, _i, _j, _k, _l, _len, _ref, _ref2, _ref3, _results, _results2, _results3, _rules;
+    var features, sub, subs, supr, _i, _len, _rules;
     _rules = {
       featureTypes: {
         administrative: ["country", "province", "locality", "neighborhood", "land_parcel"],
@@ -24,29 +22,17 @@
       stylers: {
         hue: /#[abcdefABCDEF0123456789]{6}/,
         invert_lightness: [true, false],
-        saturation: (function() {
-          _results = [];
-          for (var _i = _ref = -100; _ref <= 100 ? _i <= 100 : _i >= 100; _ref <= 100 ? _i += 1 : _i -= 1){ _results.push(_i); }
-          return _results;
-        }).apply(this, arguments),
-        lightness: (function() {
-          _results2 = [];
-          for (var _j = _ref2 = -100; _ref2 <= 100 ? _j <= 100 : _j >= 100; _ref2 <= 100 ? _j += 1 : _j -= 1){ _results2.push(_j); }
-          return _results2;
-        }).apply(this, arguments),
-        gamma: (function() {
-          _results3 = [];
-          for (var _k = _ref3 = -100; _ref3 <= 100 ? _k <= 100 : _k >= 100; _ref3 <= 100 ? _k += 1 : _k -= 1){ _results3.push(_k); }
-          return _results3;
-        }).apply(this, arguments),
+        saturation: "-100..100",
+        lightness: "-100..100",
+        gamma: "-100..100",
         visibility: ["on", "simplified", "off"]
       }
     };
     features = _rules.featureTypes;
     for (supr in features) {
       subs = features[supr];
-      for (_l = 0, _len = subs.length; _l < _len; _l++) {
-        sub = subs[_l];
+      for (_i = 0, _len = subs.length; _i < _len; _i++) {
+        sub = subs[_i];
         features["" + supr + "." + sub] = true;
       }
       features[supr] = true;

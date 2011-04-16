@@ -1,6 +1,4 @@
-###
-public namespace, the only thing you see
-###
+# public namespace, the only thing you see
 
 window.GStil =
   makeStyle: (title) -> new Stil title
@@ -9,17 +7,24 @@ window.GStil =
 rules = (->
   _rules =
     featureTypes:
+      
       administrative: [ "country", "province", "locality", "neighborhood", "land_parcel" ]
+      
       landscape: [ "man_made", "natural" ]
+      
       poi:
         [ "attraction", "business", "government", "medical",
           "park", "place_of_worship", "school", "sports_complex",
           "road", "highway", "arterial", "local" ]
+      
       road: [ "arterial", "highway", "local" ]
       transit: [ "line" ]
       "transit.station": [ "airport", "bus", "rail" ]
+      
       water: true
+    
     elementTypes: [ "all", "geometry", "labels" ]
+    
     stylers:    
       # any type of color, or just one kind?
       hue: /#[abcdefABCDEF0123456789]{6}/
