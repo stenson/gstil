@@ -21,15 +21,10 @@
     // now make and customize the style
     var plain = GStil.makeStyle("plain")
       .addTo(map)
-      .turnOff(
-        "administrative.locality", "road", "poi.park", "administrative.province"
-      )
-      .rule("administrative.country",{
-        visibility: "simplified", lightness: 25
-      })
-      .rule("landscape",{
-        hue: "#00ff09", lightness: -15
-      })
+      .turnOff("administrative.locality", "road", "poi.park", "administrative.province")
+      .rule("administrative.country").visibility("simplified").lightness(25)
+      .rule("landscape").hue("#00ff09").lightness(-15)
+      // over if you prefer something like chainy
       .rule("water",{
         visibility: "simplified", hue: "#a00", lightness: 50
       });
