@@ -26,9 +26,9 @@ rules = (->
       # quick invert, easy boolean
       invert_lightness: [ true, false ]
       # all the same in terms of range from -100 to 100
-      saturation: [-100..100]
-      lightness: [-100..100]
-      gamma: [-100..100]
+      saturation: "-100..100"
+      lightness: "-100..100"
+      gamma: "-100..100"
       visibility: [ "on", "simplified", "off" ]
 
   # function for avoiding redundancy in spec above
