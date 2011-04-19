@@ -1,7 +1,6 @@
 <html>
 <head>
  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.0&sensor=false"></script>
- <script src="underscore.js"></script>
  <script src="g-stil.js"></script>
 </head>
 <body>
@@ -30,11 +29,11 @@
       });
       
     //you can updates like this from the command-line    
-    // setTimeout(function(){
-    //   plain
-    //     .rule("water").lightness(50)
-    //     .rule("administrative.province").visibility("on")
-    //     .update();
-    // },1000);
+    setTimeout(function(){
+      plain
+        .rule("water").lightness(50)
+        .rule("administrative.province").visibility("on")
+        .addTo(map);
+    },1000);
  </script>
 </body>
